@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Experiment-webgl</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="buzz.min.js"></script>
+	<script type="text/javascript" src="background.js"></script>
+
+	<script id="2d-vertex-shader" type="x-shader/x-vertex">
+	attribute vec3 a_position;
+    attribute vec4 a_color;
+
+    uniform mat4 u_matrix;
+ 
+    varying lowp vec4 vColor;
+
+	void main() {
+  		gl_Position = u_matrix * vec4(a_position, 1);
+      	vColor = a_color;
+	}
+	</script>
+ 
+	<script id="2d-fragment-shader" type="x-shader/x-fragment">
+    varying lowp vec4 vColor;
+
+	void main() {
+  		gl_FragColor = vColor;
+	}
+	</script>
+</head>
+<body onload='Initialize()'>
+
+<!-- <a href="javascript:Initialize()">click me</a> -->
+<div class="container">
+	<canvas id="canvas" width="650" height="650" style="border:2px solid black;"></canvas>
+	<canvas id="text" width="650" height="650" style="border:2px solid black;"></canvas>
+</div>
+<div id="powerbar" style="border:2px solid black;position:absolute;left:45%;top:250px;height:300px;width:20px;display:block;">
+</div>
+<div id="powerbarfill" style="width:20px;border:2px solid black;position:absolute;left:45%;top:250px;background-color:red;display:block;">
+</div>
+<div id="victory" style="display:none;color:white;word-wrap:break-word;font-size:48px;font-family:Searn;line-height:650px;text-align:center;height:650px;width:650px;position:absolute;left:10px;top:10px;z-index:10;background-color:#b37700;">Game Over!</div>
+<script type="text/javascript" src="webgl.js"></script>
+</body>
+</html>
